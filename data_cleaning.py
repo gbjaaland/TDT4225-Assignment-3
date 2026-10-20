@@ -56,7 +56,7 @@ class DataCleaning:
         return df
     
     
-    def build_movie_docs(self, mm_df, cast_df, crew_df):
+    def build_movie_docs(self, mm_df, cast_df, crew_df, keywords_by_movie):
         mm_df = mm_df.copy()
         mm_df["production_companies"] = mm_df["production_companies"].apply(self.parse_names)
         mm_df["production_countries"] = mm_df["production_countries"].apply(self.parse_names)
@@ -78,6 +78,7 @@ class DataCleaning:
             doc["_id"] = doc.pop("id")
             doc["cast"] = cast_by_movie.get(doc["_id"], [])
             doc["crew"] = crew_by_movie.get(doc["_id"], [])
+            doc["keywords"] = keywords_by_movie.get(doc["_id"], [])
             movies.append(doc)
             
         return movies
@@ -103,6 +104,59 @@ class DataCleaning:
             entry["movies"].append(self.drop_missing(record))
             
         return list(collections.values())
+
+    def clean_links(self, mm_df):
+        links_df = pd.read_csv('data' + '/links.csv', dtype={'tmdbId': 'Int64'})
+
+        # drop links without tmdbId
+        before = links_df.shape[0]
+        links_df = links_df.dropna(subset=["tmdbId"])
+        print(f"Removed {before - links_df.shape[0]:,} links without tmdbId")
+
+        # drop links whose tmdbId does not exist in movies_metadata
+        before = links_df.shape[0]
+        links_df = links_df[links_df["tmdbId"].isin(mm_df["id"])]
+        print(f"Removed {before - links_df.shape[0]:,} links with a tmdbId that is not in movies_metadata")
+
+        # drop links where imdbId does not match movies_metadata
+        # this also removes the wrong rows for duplicate tmdbIds, since exactly one of them matches
+        imdb_mm = pd.to_numeric(mm_df.set_index("id")["imdb_id"].str.removeprefix("tt"), errors="coerce")
+        links_df = links_df.assign(imdb_mm=links_df["tmdbId"].map(imdb_mm))
+        mismatch = links_df["imdb_mm"].notna() & (links_df["imdbId"] != links_df["imdb_mm"])
+        links_df = links_df[~mismatch]
+        print(f"Removed {mismatch.sum():,} links where imdbId does not match movies_metadata")
+        print(f"Duplicate tmdbIds left: {links_df['tmdbId'].duplicated().sum()}")
+
+        # MovieLens movieId -> TMDB id (the _id in movies)
+        return dict(zip(links_df["movieId"], links_df["tmdbId"].astype(int)))
+
+    def insert_ratings(self, movie_id_map, chunk_size=500_000):
+        # the file is read and inserted in chunks, so the full dataset does not have to fit in memory
+        collection = self.db["ratings"]
+        collection.drop() # replace any documents from an earlier run
+        inserted, dropped = 0, 0
+
+        for chunk in pd.read_csv('data' + '/ratings.csv', chunksize=chunk_size):
+            # replace MovieLens movieId with TMDB id, drop ratings that cannot be linked to a movie
+            chunk["movie_id"] = chunk["movieId"].map(movie_id_map)
+            no_movie = chunk["movie_id"].isna()
+            dropped += no_movie.sum()
+            chunk = chunk[~no_movie]
+
+            # convert timestamp from Unix seconds to datetime
+            chunk = chunk.assign(
+                user_id=chunk["userId"],
+                movie_id=chunk["movie_id"].astype(int),
+                timestamp=pd.to_datetime(chunk["timestamp"], unit="s"),
+            )
+
+            docs = chunk[["user_id", "movie_id", "rating", "timestamp"]].to_dict(orient="records")
+            if docs:
+                collection.insert_many(docs, ordered=False)
+                inserted += len(docs)
+
+        print(f"Removed {dropped:,} ratings that cannot be linked to a movie")
+        print(f"Inserted {inserted:,} documents into ratings")
 
     def group_by_movie(self, df, cols):
         grouped = defaultdict(list)
@@ -154,7 +208,7 @@ class DataCleaning:
         print(f"Replaced 0 with NaN: {zero_counts.to_dict()}")
         
         # replace the strange values for tagline and overview
-        place_holders = ["-", "", "...", "x", "No overview found", "No Overview"]
+        place_holders = ["-", "", "...", "x", "No overview found.", "No Overview"]
         text_cols = ["tagline", "overview"]
         placeholder_counts = mm_df_stripped[text_cols].isin(place_holders).sum()
         mm_df_stripped[text_cols] = mm_df_stripped[text_cols].replace(place_holders, np.nan)
@@ -196,13 +250,26 @@ class DataCleaning:
         before = cast_df.shape[0]
         cast_df = cast_df.drop_duplicates(subset=["movie_id", "id", "character"])
         print(f"Removed {before - cast_df.shape[0]:,} actors listed twice for the same character")
+
+        # read keywords
+        keywords_df = pd.read_csv('data' + '/keywords.csv')
+
+        # remove duplicate ids
+        keywords_unique = keywords_df.drop_duplicates(subset="id", keep="first")
+        print(f"Removed {keywords_df.shape[0] - keywords_unique.shape[0]:,} duplicate keyword rows")
+
+        # only keep keyword name, one list pf names per movie id
+        keywords_by_movie = dict(zip(keywords_unique["id"], keywords_unique["keywords"].apply(self.parse_names)))
+
     
         # create documents on the format that fits the collections
-        movies = self.build_movie_docs(mm_df_stripped, cast_df, crew_df)
+        movies = self.build_movie_docs(mm_df_stripped, cast_df, crew_df, keywords_by_movie)
         collections = self.build_collection_docs(mm_df_stripped)
         print(f"Built {len(movies):,} movie documents and {len(collections):,} collection documents")
-
-        return {"movies": movies, "collections": collections}
+        
+        # map movieLens movieID to TMDB id, used for ratings
+        movie_id_map = self.clean_links(mm_df_stripped)
+        return {"movies": movies, "collections": collections, "movie_id_map": movie_id_map}
 
     def create_coll(self, collection_name):
         collection = self.db.create_collection(collection_name)    
@@ -210,6 +277,7 @@ class DataCleaning:
 
     def insert_documents(self, collection_name, docs):
         collection = self.db[collection_name]
+        collection.drop()   # replace any documents from an earlier run
         collection.insert_many(docs, ordered=False)
         print(f"Inserted {len(docs):,} documents into {collection_name}")
         
@@ -232,8 +300,9 @@ def main():
         docs = program.cleaning()
         program.insert_documents("movies", docs["movies"])
         program.insert_documents("collections", docs["collections"])
+        program.insert_ratings(docs["movie_id_map"])
     except Exception as e:
-        print("ERROR: Failed to use database:", e)
+        print("ERROR: Failed to use database:", str(e)[:500])
     finally:
         if program:
             program.connection.close_connection()
