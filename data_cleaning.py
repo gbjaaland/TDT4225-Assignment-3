@@ -246,10 +246,10 @@ class DataCleaning:
             # keep the non-zero gender values
             df["gender"] = df.groupby("id")["gender"].transform("max")
         
-        # remove actors listed for the same character twice
+        # remove actors listed more than once in the same movie, since we do not save character as an attribute, we won't loose information
         before = cast_df.shape[0]
-        cast_df = cast_df.drop_duplicates(subset=["movie_id", "id", "character"])
-        print(f"Removed {before - cast_df.shape[0]:,} actors listed twice for the same character")
+        cast_df = cast_df.drop_duplicates(subset=["movie_id", "id"])
+        print(f"Removed {before - cast_df.shape[0]:,} duplicate actors within the same movie")
 
         # read keywords
         keywords_df = pd.read_csv('data' + '/keywords.csv')
@@ -261,7 +261,6 @@ class DataCleaning:
         # only keep keyword name, one list pf names per movie id
         keywords_by_movie = dict(zip(keywords_unique["id"], keywords_unique["keywords"].apply(self.parse_names)))
 
-    
         # create documents on the format that fits the collections
         movies = self.build_movie_docs(mm_df_stripped, cast_df, crew_df, keywords_by_movie)
         collections = self.build_collection_docs(mm_df_stripped)
@@ -298,6 +297,9 @@ def main():
     try:
         program = DataCleaning()
         docs = program.cleaning()
+        program.drop_coll(collection_name="movies")
+        program.drop_coll(collection_name="collections")
+        program.drop_coll(collection_name="movie_id_map")
         program.insert_documents("movies", docs["movies"])
         program.insert_documents("collections", docs["collections"])
         program.insert_ratings(docs["movie_id_map"])
