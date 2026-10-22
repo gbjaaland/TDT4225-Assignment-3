@@ -297,9 +297,6 @@ def main():
     try:
         program = DataCleaning()
         docs = program.cleaning()
-        program.drop_coll(collection_name="movies")
-        program.drop_coll(collection_name="collections")
-        program.drop_coll(collection_name="movie_id_map")
         program.insert_documents("movies", docs["movies"])
         program.insert_documents("collections", docs["collections"])
         program.insert_ratings(docs["movie_id_map"])
