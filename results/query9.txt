@@ -1,0 +1,10 @@
+{'count': 112, 'example_title': 'Wings of Courage', 'original_language': 'fr'}
+{'count': 72, 'example_title': 'Bitter Sugar', 'original_language': 'es'}
+{'count': 56, 'example_title': 'Frankie Starlight', 'original_language': 'it'}
+{'count': 51, 'example_title': 'Cold Fever', 'original_language': 'de'}
+{'count': 31, 'example_title': 'Godzilla 1985', 'original_language': 'ja'}
+{'count': 15, 'example_title': 'Senseless', 'original_language': 'pt'}
+{'count': 14, 'example_title': 'Quest for Fire', 'original_language': 'xx'}
+{'count': 12, 'example_title': 'Come On, Rangers', 'original_language': 'nl'}
+{'count': 11, 'example_title': 'Dark Eyes', 'original_language': 'ru'}
+{'count': 11, 'example_title': 'Eat Drink Man Woman', 'original_language': 'zh'}

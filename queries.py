@@ -16,11 +16,6 @@ class Queries:
             pprint(doc)
             
     def q1(self):
-        """
-        Considering only crew with job = Director, which 10 directors with ≥ 5 movies
-        have the highest median revenue?
-        Also report each director’s movie count and mean vote_average.
-        """
         agg_query = [
             # expand crew
             { "$unwind":  "$crew"}, 
@@ -74,12 +69,6 @@ class Queries:
         self.fetch_documents_agg("movies", agg_query, 1)
 
     def q2(self):
-        """
-        List actor pairs have co-starred in >= 3 movies together, their number of
-        co-appearances, and their average movie vote_average. Sort by number of
-        co-appearances.
-        """
-        
         agg_query = [
             # duplicate cast to construct co-starred pairs
             {"$project": {
@@ -147,12 +136,6 @@ class Queries:
         self.fetch_documents_agg("movies", agg_query, 2)
     
     def q3(self):
-        """
-        List the top 10 actors (with ≥ 10 credited movies) that have the widest genre
-        breadth. Report the actor, the number of distinct genres they’ve appeared in,
-        and up to 5 example genres.
-        """
-        
         agg_query = [
             # expand cast and genres
             { "$unwind":  "$cast"}, 
@@ -162,14 +145,26 @@ class Queries:
                 "_id": "$cast.id",
                 "actor": {"$first": "$cast.name"},
                 "movie_count": {"$sum": 1},
-                "genres": {"$setUnion": "$genres"}
+                "genres": {"$addToSet": "$genres"}
             }},
-            
+
+            # flatten genre lists into one set of distinct genres
+            {"$set": {
+                "genres": {
+                    "$reduce": {
+                        "input": "$genres",
+                        "initialValue": [],
+                        "in": {"$setUnion": ["$$value", "$$this"]}
+                    }
+                }
+            }},
+
             # filter actors with at least 10 credited movies
             {"$match": {"movie_count": {"$gte": 10}}},
             
             # only display 5 example genres
             {"$project": {
+                "_id": 0, 
                 "actor": 1,
                 "genres_count": {"$size": "$genres"},
                 "first_five_genres": {"$slice": ["$genres", 5]}
@@ -185,12 +180,6 @@ class Queries:
         self.fetch_documents_agg("movies", agg_query, 3)
     
     def q4(self):
-        """
-        For film collections (belongs_to_collection.name not null) with ≥ 3 movies, which
-        10 collections have the largest total revenue?
-        For each, report movie count, total revenue, median vote_average, and the
-        earliest → latest release date.
-        """
         agg_query = [
             
             # project movie count, total revenue, median vote_average, and the earliest  and latest release date
@@ -243,12 +232,6 @@ class Queries:
         self.fetch_documents_agg("collections", agg_query, 4)
     
     def q5(self):
-        """
-        By decade (e.g., 1970s, 1980s, ...) and primary genre (first element in genres),
-        what is the median runtime and movie count?
-        List results sorted by decade then median runtime (desc).
-        """
-        
         agg_query = [
             # only keep movies with a releasedate and genres
             {"$match": {"release_date": {"$exists": True}, "genres.0": {"$exists": True}}},
@@ -545,7 +528,7 @@ def main():
     try:
         program = Queries()
         #for q in [program.q1, program.q2, program.q3, program.q4, program.q5, program.q6, program.q7, program.q8, program.q9, program.q10]: 
-        for q in [program.q4, program.q5]:
+        for q in [program.q10]:
             q()
     except Exception as e:
         print("ERROR: Failed to use database:", str(e)[:500])

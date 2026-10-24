@@ -1,0 +1,81 @@
+{'distinct_genres': 20,
+ 'ratings_count': 18197,
+ 'user_id': 45811,
+ 'variance': 0.643}
+{'distinct_genres': 20,
+ 'ratings_count': 9225,
+ 'user_id': 8659,
+ 'variance': 0.314}
+{'distinct_genres': 20,
+ 'ratings_count': 7615,
+ 'user_id': 270123,
+ 'variance': 1.121}
+{'distinct_genres': 20,
+ 'ratings_count': 7490,
+ 'user_id': 179792,
+ 'variance': 0.9}
+{'distinct_genres': 20,
+ 'ratings_count': 7369,
+ 'user_id': 228291,
+ 'variance': 0.28}
+{'distinct_genres': 20,
+ 'ratings_count': 6283,
+ 'user_id': 243443,
+ 'variance': 1.6}
+{'distinct_genres': 20,
+ 'ratings_count': 6068,
+ 'user_id': 98415,
+ 'variance': 0.85}
+{'distinct_genres': 20,
+ 'ratings_count': 5997,
+ 'user_id': 229879,
+ 'variance': 1.024}
+{'distinct_genres': 20,
+ 'ratings_count': 5799,
+ 'user_id': 98787,
+ 'variance': 2.069}
+{'distinct_genres': 20,
+ 'ratings_count': 5679,
+ 'user_id': 172224,
+ 'variance': 0.534}
+Top 10 highest-variance users:
+{'distinct_genres': 15,
+ 'ratings_count': 20,
+ 'user_id': 83102,
+ 'variance': 5.062}
+{'distinct_genres': 13,
+ 'ratings_count': 20,
+ 'user_id': 18703,
+ 'variance': 5.062}
+{'distinct_genres': 14,
+ 'ratings_count': 26,
+ 'user_id': 185889,
+ 'variance': 5.062}
+{'distinct_genres': 14,
+ 'ratings_count': 34,
+ 'user_id': 167241,
+ 'variance': 5.062}
+{'distinct_genres': 14,
+ 'ratings_count': 20,
+ 'user_id': 57842,
+ 'variance': 5.062}
+{'distinct_genres': 15,
+ 'ratings_count': 20,
+ 'user_id': 153882,
+ 'variance': 5.062}
+{'distinct_genres': 14,
+ 'ratings_count': 83,
+ 'user_id': 15395,
+ 'variance': 5.062}
+{'distinct_genres': 13,
+ 'ratings_count': 27,
+ 'user_id': 71009,
+ 'variance': 5.056}
+{'distinct_genres': 13,
+ 'ratings_count': 21,
+ 'user_id': 179759,
+ 'variance': 5.051}
+{'distinct_genres': 19,
+ 'ratings_count': 120,
+ 'user_id': 221535,
+ 'variance': 5.04}

@@ -1,0 +1,15 @@
+{'avg_female_proportion': 1.0, 'decade': '1870', 'movie_count': 1}
+{'avg_female_proportion': 0.8, 'decade': '2020', 'movie_count': 1}
+{'avg_female_proportion': 0.5, 'decade': '1890', 'movie_count': 2}
+{'avg_female_proportion': 0.444, 'decade': '1900', 'movie_count': 12}
+{'avg_female_proportion': 0.376, 'decade': '2010', 'movie_count': 10544}
+{'avg_female_proportion': 0.365, 'decade': '1930', 'movie_count': 1250}
+{'avg_female_proportion': 0.362, 'decade': '2000', 'movie_count': 9647}
+{'avg_female_proportion': 0.359, 'decade': '1940', 'movie_count': 1435}
+{'avg_female_proportion': 0.338, 'decade': '1990', 'movie_count': 5181}
+{'avg_female_proportion': 0.337, 'decade': '1910', 'movie_count': 144}
+{'avg_female_proportion': 0.336, 'decade': '1950', 'movie_count': 1998}
+{'avg_female_proportion': 0.332, 'decade': '1920', 'movie_count': 374}
+{'avg_female_proportion': 0.325, 'decade': '1960', 'movie_count': 2395}
+{'avg_female_proportion': 0.32, 'decade': '1980', 'movie_count': 3556}
+{'avg_female_proportion': 0.311, 'decade': '1970', 'movie_count': 3145}

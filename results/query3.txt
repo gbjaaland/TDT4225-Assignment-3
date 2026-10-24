@@ -1,0 +1,30 @@
+{'actor': 'David Carradine',
+ 'first_five_genres': ['Action', 'Adventure', 'Animation', 'Comedy', 'Crime'],
+ 'genres_count': 20}
+{'actor': 'Martin Sheen',
+ 'first_five_genres': ['Action', 'Adventure', 'Animation', 'Comedy', 'Crime'],
+ 'genres_count': 20}
+{'actor': 'Christopher Lee',
+ 'first_five_genres': ['Action', 'Adventure', 'Animation', 'Comedy', 'Crime'],
+ 'genres_count': 20}
+{'actor': 'Keith David',
+ 'first_five_genres': ['Action', 'Adventure', 'Animation', 'Comedy', 'Crime'],
+ 'genres_count': 20}
+{'actor': 'Michael Gambon',
+ 'first_five_genres': ['Action', 'Adventure', 'Animation', 'Comedy', 'Crime'],
+ 'genres_count': 20}
+{'actor': 'Charlton Heston',
+ 'first_five_genres': ['Action', 'Adventure', 'Animation', 'Comedy', 'Crime'],
+ 'genres_count': 20}
+{'actor': 'Eddie Izzard',
+ 'first_five_genres': ['Action', 'Adventure', 'Animation', 'Comedy', 'Crime'],
+ 'genres_count': 20}
+{'actor': 'Eddie Albert',
+ 'first_five_genres': ['Action', 'Adventure', 'Animation', 'Comedy', 'Crime'],
+ 'genres_count': 20}
+{'actor': 'Bill Nighy',
+ 'first_five_genres': ['Action', 'Adventure', 'Animation', 'Comedy', 'Crime'],
+ 'genres_count': 20}
+{'actor': 'Michael Madsen',
+ 'first_five_genres': ['Action', 'Adventure', 'Animation', 'Comedy', 'Crime'],
+ 'genres_count': 20}

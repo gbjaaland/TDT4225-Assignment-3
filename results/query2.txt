@@ -1,0 +1,40 @@
+{'actor_name_1': 'Huntz Hall',
+ 'actor_name_2': 'Leo Gorcey',
+ 'co_appearance_nr': 35,
+ 'mean_vote_avg': 6.35}
+{'actor_name_1': 'Charlie Chaplin',
+ 'actor_name_2': 'Edna Purviance',
+ 'co_appearance_nr': 33,
+ 'mean_vote_avg': 6.46}
+{'actor_name_1': 'Oliver Hardy',
+ 'actor_name_2': 'Stan Laurel',
+ 'co_appearance_nr': 31,
+ 'mean_vote_avg': 6.35}
+{'actor_name_1': 'Jeff Bennett',
+ 'actor_name_2': 'Rob Paulsen',
+ 'co_appearance_nr': 27,
+ 'mean_vote_avg': 6.23}
+{'actor_name_1': 'Lou Costello',
+ 'actor_name_2': 'Bud Abbott',
+ 'co_appearance_nr': 27,
+ 'mean_vote_avg': 6.47}
+{'actor_name_1': 'Raymond Burr',
+ 'actor_name_2': 'Barbara Hale',
+ 'co_appearance_nr': 25,
+ 'mean_vote_avg': 5.93}
+{'actor_name_1': 'Grey Griffin',
+ 'actor_name_2': 'Frank Welker',
+ 'co_appearance_nr': 25,
+ 'mean_vote_avg': 6.71}
+{'actor_name_1': 'John Wayne',
+ 'actor_name_2': 'Paul Fix',
+ 'co_appearance_nr': 24,
+ 'mean_vote_avg': 5.85}
+{'actor_name_1': 'Jim Cummings',
+ 'actor_name_2': 'Frank Welker',
+ 'co_appearance_nr': 21,
+ 'mean_vote_avg': 6.55}
+{'actor_name_1': 'Frank Welker',
+ 'actor_name_2': 'Jeff Bennett',
+ 'co_appearance_nr': 21,
+ 'mean_vote_avg': 6.23}

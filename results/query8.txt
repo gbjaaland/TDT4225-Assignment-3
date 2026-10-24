@@ -1,0 +1,7 @@
+You are connected to the database: movies
+-----------------------------------------------
+
+---QUERY NR: 8---
+
+-----------------------------------------------
+Connection to movies-db is closed

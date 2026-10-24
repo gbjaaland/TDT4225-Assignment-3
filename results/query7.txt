@@ -1,0 +1,11 @@
+{'title': 'The Bad Sleep Well',
+ 'vote_average': 7.7,
+ 'vote_count': 57,
+ 'year': 1960}
+{'title': 'Drunken Angel', 'vote_average': 7.7, 'vote_count': 54, 'year': 1948}
+{'title': 'Elevator to the Gallows',
+ 'vote_average': 7.6,
+ 'vote_count': 85,
+ 'year': 1958}
+{'title': 'Frank & Lola', 'vote_average': 5.7, 'vote_count': 51, 'year': 2016}
+{'title': 'Synchronicity', 'vote_average': 5.7, 'vote_count': 114, 'year': 2015}
