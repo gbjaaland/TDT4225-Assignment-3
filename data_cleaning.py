@@ -3,7 +3,6 @@ import csv, io
 from collections import defaultdict
 from DbConnector import DbConnector
 import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
 from pprint import pprint 
 
