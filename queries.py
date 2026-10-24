@@ -28,15 +28,7 @@ class Queries:
                 "_id": "$crew.id",
                 "director": {"$first": "$crew.name"},
                 "movie_count": {"$sum": 1},
-                "mean_vote_avg": { 
-                    "$avg": {
-                        "$cond" : [
-                            {"$gt": ["$vote_count", 0]}, # don't include vote_average where vote_count = 0
-                            "$vote_average",
-                            None
-                        ]
-                    }
-                },
+                "mean_vote_avg": {"$avg": "$vote_average"},
                 "median_revenue": {
                     "$median": {
                         "input": "$revenue",
@@ -73,7 +65,6 @@ class Queries:
             # duplicate cast to construct co-starred pairs
             {"$project": {
                     "movie_id": "_id",
-                    "vote_count": 1,
                     "vote_average": 1,
                     "cast": 1,
                     "cast_duplicated": "$cast"
@@ -101,15 +92,7 @@ class Queries:
                 "actor_name_1": {"$first": "$cast.name"},
                 "actor_name_2": {"$first": "$cast_duplicated.name"},
                 "co_appearance_nr": {"$sum": 1},
-                "mean_vote_avg": { 
-                        "$avg": {
-                            "$cond" : [
-                                {"$gt": ["$vote_count", 0]}, # don't include vote_average where vote_count = 0
-                                "$vote_average",
-                                None
-                            ]
-                        }
-                },
+                "mean_vote_avg": {"$avg": "$vote_average"},
             }},
             
             # format output
@@ -190,18 +173,7 @@ class Queries:
                 "total_revenue": {"$sum": "$movies.revenue"},
                 "median_vote_avg": {
                     "$median": {
-                        "input": {
-                            "$map": {
-                                "input": "$movies",
-                                "in": {
-                                    "$cond": [
-                                        {"$gt": ["$$this.vote_count", 0]},
-                                        "$$this.vote_average",
-                                        None
-                                    ]
-                                }
-                            }
-                        },
+                        "input": "$movies.vote_average",
                         "method": "approximate"
                     }
                 },
