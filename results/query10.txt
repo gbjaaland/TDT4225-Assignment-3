@@ -1,3 +1,4 @@
+Top 10 most genre-diverse users:
 {'distinct_genres': 20,
  'ratings_count': 18197,
  'user_id': 45811,
@@ -38,34 +39,35 @@
  'ratings_count': 5679,
  'user_id': 172224,
  'variance': 0.534}
+
 Top 10 highest-variance users:
+{'distinct_genres': 14,
+ 'ratings_count': 83,
+ 'user_id': 15395,
+ 'variance': 5.062}
 {'distinct_genres': 15,
  'ratings_count': 20,
  'user_id': 83102,
- 'variance': 5.062}
-{'distinct_genres': 13,
- 'ratings_count': 20,
- 'user_id': 18703,
- 'variance': 5.062}
-{'distinct_genres': 14,
- 'ratings_count': 26,
- 'user_id': 185889,
- 'variance': 5.062}
-{'distinct_genres': 14,
- 'ratings_count': 34,
- 'user_id': 167241,
- 'variance': 5.062}
-{'distinct_genres': 14,
- 'ratings_count': 20,
- 'user_id': 57842,
  'variance': 5.062}
 {'distinct_genres': 15,
  'ratings_count': 20,
  'user_id': 153882,
  'variance': 5.062}
 {'distinct_genres': 14,
- 'ratings_count': 83,
- 'user_id': 15395,
+ 'ratings_count': 34,
+ 'user_id': 167241,
+ 'variance': 5.062}
+{'distinct_genres': 14,
+ 'ratings_count': 26,
+ 'user_id': 185889,
+ 'variance': 5.062}
+{'distinct_genres': 14,
+ 'ratings_count': 20,
+ 'user_id': 57842,
+ 'variance': 5.062}
+{'distinct_genres': 13,
+ 'ratings_count': 20,
+ 'user_id': 18703,
  'variance': 5.062}
 {'distinct_genres': 13,
  'ratings_count': 27,

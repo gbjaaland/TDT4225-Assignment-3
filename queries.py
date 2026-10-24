@@ -391,7 +391,7 @@ class Queries:
         agg_query = [
             # only movies with at least 100 votes
             {"$match": {"vote_count": {"$gte": 100}}},
- 
+
             # directors and actors of each movie, cleaning secures that each person only appears once
             {"$project": {
                 "vote_average": 1,
@@ -401,16 +401,17 @@ class Queries:
                         "input": "$crew",
                         "cond": {"$eq": ["$$this.job", "Director"]}
                     }
-                }
+                },
+                "actors": "$cast"
             }},
- 
+
             # one document per director-actor pair per movie
             {"$unwind": "$directors"},
             {"$unwind": "$actors"},
- 
+
             # a director acting in their own movie is not a pair
-            {"$match": {"$expr": {"$ne": ["$directors.id", "$cast.id"]}}},
- 
+            {"$match": {"$expr": {"$ne": ["$directors.id", "$actors.id"]}}},
+
             # group by pair
             {"$group": {
                 "_id": {"director_id": "$directors.id", "actor_id": "$actors.id"},
@@ -418,12 +419,12 @@ class Queries:
                 "actor": {"$first": "$actors.name"},
                 "films_count": {"$sum": 1},
                 "mean_vote_avg": {"$avg": "$vote_average"},
-                "mean_revenue": {"$avg": "$revenue"}  # movies without revenue are ignored
+                "mean_revenue": {"$avg": "$revenue"}  # movies without revenue (null) are ignored
             }},
- 
+
             # filter pairs with at least 3 collaborations
             {"$match": {"films_count": {"$gte": 3}}},
- 
+
             # format output
             {"$project": {
                 "_id": 0,
@@ -433,14 +434,14 @@ class Queries:
                 "mean_vote_avg": {"$round": ["$mean_vote_avg", 2]},
                 "mean_revenue": {"$round": ["$mean_revenue", 0]}
             }},
- 
+
             # sort by highest mean vote_average
             {"$sort": {"mean_vote_avg": -1, "films_count": -1}},
- 
+
             # return top 20
             {"$limit": 20}
         ]
- 
+
         self.fetch_documents_agg("movies", agg_query, 8)
     
     def q9(self):
@@ -535,7 +536,6 @@ def main():
     finally:
         if program:
             program.connection.close_connection()
-
 
 if __name__ == "__main__":
     main()

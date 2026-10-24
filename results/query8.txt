@@ -1,7 +1,100 @@
-You are connected to the database: movies
------------------------------------------------
-
----QUERY NR: 8---
-
------------------------------------------------
-Connection to movies-db is closed
+{'actor': 'Haruo Suzuki',
+ 'director': 'Akira Kurosawa',
+ 'films_count': 3,
+ 'mean_revenue': 271841.0,
+ 'mean_vote_avg': 8.13}
+{'actor': 'Hank Mann',
+ 'director': 'Charlie Chaplin',
+ 'films_count': 3,
+ 'mean_revenue': 6506394.0,
+ 'mean_vote_avg': 8.13}
+{'actor': 'Eijirô Tôno',
+ 'director': 'Akira Kurosawa',
+ 'films_count': 3,
+ 'mean_revenue': 271841.0,
+ 'mean_vote_avg': 8.13}
+{'actor': 'Minoru Itô',
+ 'director': 'Akira Kurosawa',
+ 'films_count': 3,
+ 'mean_revenue': 271841.0,
+ 'mean_vote_avg': 8.13}
+{'actor': 'Toranosuke Ogawa',
+ 'director': 'Akira Kurosawa',
+ 'films_count': 3,
+ 'mean_revenue': 163540.0,
+ 'mean_vote_avg': 8.1}
+{'actor': 'John Cazale',
+ 'director': 'Francis Ford Coppola',
+ 'films_count': 3,
+ 'mean_revenue': 99009751.0,
+ 'mean_vote_avg': 8.1}
+{'actor': 'Atsushi Watanabe',
+ 'director': 'Akira Kurosawa',
+ 'films_count': 3,
+ 'mean_revenue': 163540.0,
+ 'mean_vote_avg': 8.1}
+{'actor': 'Harvey Keitel',
+ 'director': 'Quentin Tarantino',
+ 'films_count': 3,
+ 'mean_revenue': 182573606.0,
+ 'mean_vote_avg': 8.1}
+{'actor': 'Ichirô Chiba',
+ 'director': 'Akira Kurosawa',
+ 'films_count': 4,
+ 'mean_revenue': 163540.0,
+ 'mean_vote_avg': 8.07}
+{'actor': 'Robert Duvall',
+ 'director': 'Francis Ford Coppola',
+ 'films_count': 4,
+ 'mean_revenue': 96622408.0,
+ 'mean_vote_avg': 8.07}
+{'actor': 'Noriko Honma',
+ 'director': 'Akira Kurosawa',
+ 'films_count': 4,
+ 'mean_revenue': 141216.0,
+ 'mean_vote_avg': 8.07}
+{'actor': 'Daisuke Katô',
+ 'director': 'Akira Kurosawa',
+ 'films_count': 4,
+ 'mean_revenue': 141216.0,
+ 'mean_vote_avg': 8.07}
+{'actor': 'Susumu Fujita',
+ 'director': 'Akira Kurosawa',
+ 'films_count': 3,
+ 'mean_revenue': None,
+ 'mean_vote_avg': 8.07}
+{'actor': 'Haruya Sakamoto',
+ 'director': 'Akira Kurosawa',
+ 'films_count': 3,
+ 'mean_revenue': 271841.0,
+ 'mean_vote_avg': 8.07}
+{'actor': 'Shôichi Hirose',
+ 'director': 'Akira Kurosawa',
+ 'films_count': 3,
+ 'mean_revenue': 271841.0,
+ 'mean_vote_avg': 8.07}
+{'actor': 'Isao Kimura',
+ 'director': 'Akira Kurosawa',
+ 'films_count': 4,
+ 'mean_revenue': 163540.0,
+ 'mean_vote_avg': 8.05}
+{'actor': 'Minoru Chiaki',
+ 'director': 'Akira Kurosawa',
+ 'films_count': 6,
+ 'mean_revenue': 141216.0,
+ 'mean_vote_avg': 8.03}
+{'actor': 'Sean Astin',
+ 'director': 'Peter Jackson',
+ 'films_count': 3,
+ 'mean_revenue': 972181581.0,
+ 'mean_vote_avg': 8.03}
+{'actor': 'Liv Tyler',
+ 'director': 'Peter Jackson',
+ 'films_count': 3,
+ 'mean_revenue': 972181581.0,
+ 'mean_vote_avg': 8.03}
+{'actor': 'Sean Bean',
+ 'director': 'Peter Jackson',
+ 'films_count': 3,
+ 'mean_revenue': 972181581.0,
+ 'mean_vote_avg': 8.03}
