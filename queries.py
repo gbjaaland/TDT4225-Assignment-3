@@ -56,7 +56,7 @@ class Queries:
                 }  
             },
             
-            # filter directors with more than 5 movies
+            # filter directors with at least 5 movies
             {"$match": {"movie_count": {"$gte": 5}}},
             
             # sort by highest median revenue
@@ -128,8 +128,8 @@ class Queries:
             # sort by highest nr of co-appearance 
             {"$sort": {"co_appearance_nr": -1}},
             
-            # return top 10 if wanted
-            {"$limit": 10}
+            # return top 20 
+            {"$limit": 20}
                 
         ]
         
@@ -283,8 +283,8 @@ class Queries:
             # sort by decade ascending and median runtime descending
             {"$sort": {"decade": -1, "median_runtime": -1}},
             
-            # return top 10
-            # {"$limit": 10} 
+            # return top 20
+            {"$limit": 20} 
         ]
         
         self.fetch_documents_agg("movies", agg_query, 5)

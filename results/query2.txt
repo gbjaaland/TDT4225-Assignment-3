@@ -34,7 +34,47 @@
  'actor_name_2': 'Frank Welker',
  'co_appearance_nr': 21,
  'mean_vote_avg': 6.55}
+{'actor_name_1': 'Peter Cushing',
+ 'actor_name_2': 'Christopher Lee',
+ 'co_appearance_nr': 21,
+ 'mean_vote_avg': 5.99}
+{'actor_name_1': 'Frank Mayo',
+ 'actor_name_2': 'Jack Mower',
+ 'co_appearance_nr': 21,
+ 'mean_vote_avg': 6.28}
+{'actor_name_1': 'Jim Cummings',
+ 'actor_name_2': 'Jeff Bennett',
+ 'co_appearance_nr': 21,
+ 'mean_vote_avg': 6.27}
 {'actor_name_1': 'Frank Welker',
  'actor_name_2': 'Jeff Bennett',
  'co_appearance_nr': 21,
  'mean_vote_avg': 6.23}
+{'actor_name_1': 'Charlie Chaplin',
+ 'actor_name_2': 'Henry Bergman',
+ 'co_appearance_nr': 20,
+ 'mean_vote_avg': 6.98}
+{'actor_name_1': 'Bernard Gorcey',
+ 'actor_name_2': 'Leo Gorcey',
+ 'co_appearance_nr': 20,
+ 'mean_vote_avg': 7.0}
+{'actor_name_1': 'Bernard Gorcey',
+ 'actor_name_2': 'Huntz Hall',
+ 'co_appearance_nr': 19,
+ 'mean_vote_avg': 7.11}
+{'actor_name_1': 'Charlie Chaplin',
+ 'actor_name_2': 'John Rand',
+ 'co_appearance_nr': 19,
+ 'mean_vote_avg': 6.75}
+{'actor_name_1': 'Sammo Hung',
+ 'actor_name_2': 'Yuen Biao',
+ 'co_appearance_nr': 19,
+ 'mean_vote_avg': 6.83}
+{'actor_name_1': 'Simon Yam',
+ 'actor_name_2': 'Lam Suet',
+ 'co_appearance_nr': 19,
+ 'mean_vote_avg': 6.1}
+{'actor_name_1': 'Jackie Chan',
+ 'actor_name_2': 'Yuen Biao',
+ 'co_appearance_nr': 19,
+ 'mean_vote_avg': 6.8}
