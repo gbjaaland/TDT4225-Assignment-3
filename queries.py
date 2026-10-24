@@ -281,7 +281,10 @@ class Queries:
             }},
             
             # sort by decade ascending and median runtime descending
-            {"$sort": {"decade": 1, "median_runtime": -1}},
+            {"$sort": {"decade": -1, "median_runtime": -1}},
+            
+            # return top 10
+            # {"$limit": 10} 
         ]
         
         self.fetch_documents_agg("movies", agg_query, 5)
@@ -527,8 +530,7 @@ def main():
     program = None
     try:
         program = Queries()
-        #for q in [program.q1, program.q2, program.q3, program.q4, program.q5, program.q6, program.q7, program.q8, program.q9, program.q10]: 
-        for q in [program.q10]:
+        for q in [program.q1, program.q2, program.q3, program.q4, program.q5, program.q6, program.q7, program.q8, program.q9, program.q10]: 
             q()
     except Exception as e:
         print("ERROR: Failed to use database:", str(e)[:500])
