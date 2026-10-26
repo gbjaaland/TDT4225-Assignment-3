@@ -212,16 +212,6 @@ class DataCleaning:
         placeholder_counts = mm_df_stripped[text_cols].isin(place_holders).sum()
         mm_df_stripped[text_cols] = mm_df_stripped[text_cols].replace(place_holders, np.nan)
         print(f"Replaced placeholders with NaN: {placeholder_counts.to_dict()}")
-        
-        # remove values for tagline where it is identical to overview or title
-        same_tagline = (mm_df_stripped["tagline"] == mm_df_stripped["overview"]) | (mm_df_stripped["tagline"] == mm_df_stripped["title"])
-        mm_df_stripped.loc[same_tagline, "tagline"] = np.nan
-        print(f"Removed {same_tagline.sum():,} taglines identical to overview or title")
-        
-        # remove values for overview where it is identical to title
-        same_overview = mm_df_stripped["overview"] == mm_df_stripped["title"]
-        mm_df_stripped.loc[same_overview, "overview"] = np.nan
-        print(f"Removed {same_overview.sum():,} overviews identical to title")   
            
         # only keep genre name
         mm_df_stripped["genres"] = mm_df_stripped["genres"].apply(
